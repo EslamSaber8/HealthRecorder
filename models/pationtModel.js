@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
-// const validator = require('validator');
-
 const pationtSchema = new mongoose.Schema(
   {
     name:{
@@ -21,13 +19,9 @@ const pationtSchema = new mongoose.Schema(
         values: ['A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-'],
         message: "must choose a valid bloodtype('A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-')"
       }
-    },
+    }
   
-},
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+}
 );
 
 const Pationt = mongoose.model('Pationt', pationtSchema);
