@@ -44,7 +44,7 @@ const doctorSchema = new mongoose.Schema(
     },
     passwordConfirm:{
         type:String,
-        required:[true,"please conferm a password"]
+        
     },
     address:{
         type:String,
