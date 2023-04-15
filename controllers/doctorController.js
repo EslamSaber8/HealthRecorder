@@ -49,7 +49,7 @@ exports.createDoctor = catchAsync(async (req, res, next) => {
 });
 
 exports.updateDoctor = catchAsync(async (req, res, next) => {
-  const doctor = await doctor.findByIdAndUpdate(req.params.id, req.body, {
+  const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });
@@ -65,6 +65,7 @@ exports.updateDoctor = catchAsync(async (req, res, next) => {
     }
   });
 });
+
 
 exports.deleteDoctor = catchAsync(async (req, res, next) => {
   const doctor= await Doctor.findByIdAndDelete(req.params.id);
