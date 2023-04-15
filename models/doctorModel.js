@@ -38,7 +38,7 @@ const doctorSchema = new mongoose.Schema(
     },
     password:{
         type:String,
-        require:[true,"please provide a password"],
+        required:[true,"please provide a password"],
         minlenght:8
 
     },
@@ -48,11 +48,11 @@ const doctorSchema = new mongoose.Schema(
     },
     address:{
         type:String,
-        require:true
+        required:true
     },
     phoneNumber:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     }
   
