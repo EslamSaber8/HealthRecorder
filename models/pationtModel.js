@@ -42,14 +42,16 @@ const pationtSchema = new mongoose.Schema(
   },
   password:{
       type:String,
-      require:[true,"please provide a password"],
+      required:[true,"please provide a password"],
       minlenght:8
 
   },
   phoneNumber:{
     type:String,
-    require:true,
-    unique:true
+    required:true,
+    unique:true,
+    minlength:[11,"too short PhoneNumber"],
+    maxlength:[11,"too long PhoneNumber"]
 }
   
 }
