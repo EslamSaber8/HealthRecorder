@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator=require("validator");
+const bcrypt=require("bcryptjs")
 const pationtSchema = new mongoose.Schema(
   {
     fristName:{
@@ -43,7 +44,8 @@ const pationtSchema = new mongoose.Schema(
   password:{
       type:String,
       required:[true,"please provide a password"],
-      minlenght:8
+      minlenght:8,
+      select:false
 
   },
   phoneNumber:{
@@ -56,6 +58,15 @@ const pationtSchema = new mongoose.Schema(
   
 }
 );
+pationtSchema.pre('save',async function(next){
+  //only run if password was actile modifed
+  if(!this.isModified('password')) return next();
+  this.password= await bcrypt.hash(this.password,12)
+  next();
+})
+pationtSchema.methods.correctPassword=async function( condidatePassword,pationtPassword){
+  return await bcrypt.compare(condidatePassword,pationtPassword);
+};
 
 const Pationt = mongoose.model('Pationt', pationtSchema);
 
