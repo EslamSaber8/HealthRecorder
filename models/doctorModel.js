@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 const validator=require("validator");
+const bcrypt=require("bcryptjs")
 const doctorSchema = new mongoose.Schema(
   {
-    firstName:{
+   firstName:{
       type:String,
-      required:[true,"name required"],
+      required:[true,"first name required"],
       minlength:[3,"too short name"],
       maxlength:[10,"too long name"],
   },
   lastName:{
     type:String,
-    required:[true,"name required"],
+    required:[true,"last name required"],
     minlength:[3,"too short name"],
     maxlength:[10,"too long name"],
  },
@@ -21,8 +22,8 @@ const doctorSchema = new mongoose.Schema(
     gender:{
       type:String,
       enum:{
-        values:["male","female"],
-        message:" choose male or female"
+        values:["mail","femail"],
+        message:" choose mail or femail"
       }
     },
     department:{
@@ -42,10 +43,10 @@ const doctorSchema = new mongoose.Schema(
         minlenght:8
 
     },
-    passwordConfirm:{
-        type:String,
+    // passwordConfirm:{
+    //     type:String,
         
-    },
+    // },
     address:{
         type:String,
         required:true
@@ -58,6 +59,15 @@ const doctorSchema = new mongoose.Schema(
   
 }
 );
+doctorSchema.pre('save',async function(next){
+  //only run if password was actile modifed
+  if(!this.isModified('password')) return next();
+  this.password= await bcrypt.hash(this.password,12)
+  next();
+})
+doctorSchema.methods.correctPassword=async function( condidatePassword,doctorPassword){
+  return await bcrypt.compare(condidatePassword,doctorPassword);
+};
 
 const Doctor = mongoose.model('Doctor', doctorSchema);
 
