@@ -17,7 +17,14 @@ exports.signup=catchAsync(async(req,res,next)=>{
         gender:req.body.gender,
         email:req.body.email,
          password:req.body.password,
-         phoneNumber:req.body.phoneNumber
+         phoneNumber:req.body.phoneNumber,
+         National_ID:req.body. National_ID,
+        chronic_Diseases:req.body.chronic_Diseases,
+        Health_problems:req.body.Health_problems,
+        Hereditary_diseases:req.body.Hereditary_diseases,
+        Surgical_operations:req.body.Surgical_operations
+
+         
     })
  const token= signToken(newPationt._id)
     res.status(201).json({

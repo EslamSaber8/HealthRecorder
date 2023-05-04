@@ -54,7 +54,30 @@ const pationtSchema = new mongoose.Schema(
     unique:true,
     minlength:[11,"too short PhoneNumber"],
     maxlength:[11,"too long PhoneNumber"]
-}
+},
+National_ID:{
+  type:String,
+  required:true,
+  unique:true,
+  minlength:[14,"too short PhoneNumber"],
+  maxlength:[14,"too long PhoneNumber"]
+  },
+ chronic_Diseases:{
+  type:[String],
+  required:true
+  },
+ Health_problems:{
+  type:[String],
+  required:true
+  },
+ Hereditary_diseases:{
+  type:[String],
+  required:true
+  },
+ Surgical_operations:{
+  type:[String],
+  required:true
+  }
   
 }
 );
