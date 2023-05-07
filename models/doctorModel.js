@@ -28,7 +28,7 @@ const doctorSchema = new mongoose.Schema(
     },
     department:{
         type:String,
-        required:true
+        required:[true,"please provide your department"]
     },
     email:{
         type:String,

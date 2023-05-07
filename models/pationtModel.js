@@ -1,6 +1,74 @@
 const mongoose = require('mongoose');
 const validator=require("validator");
 const bcrypt=require("bcryptjs")
+const healthproblem_Schema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  medicen: {
+    type: String,
+    required: true
+  }
+});
+const Surgical_operations_Schema= new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    minlength:[10," short data please set data as EX 01/02/2020"],
+    maxlength:[10," long data too long PhoneNumber"],
+    required: true
+  }
+});
+const diagonas_Schema= new mongoose.Schema({
+  DoctorName: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    minlength:[10," short data please set data as EX 01/02/2020"],
+    maxlength:[10," long data too long PhoneNumber"],
+    required: true
+  },
+  Diagnose_condition:{
+    type:String,
+    require:true
+  },
+  Medicine:{
+    type:[String],
+    require:true
+  }
+
+});
+
+
+
+
+
+const Hereditary_diseases_Schema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  medicen: {
+    type: String,
+    required: true
+  }
+});
+const chronic_Diseases_Schema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  medicen: {
+    type: String,
+    required: true
+  }
+});
 const pationtSchema = new mongoose.Schema(
   {
     fristName:{
@@ -44,7 +112,7 @@ const pationtSchema = new mongoose.Schema(
   password:{
       type:String,
       required:[true,"please provide a password"],
-      minlenght:8,
+      minlength:[8," to short password"],
       select:false
 
   },
@@ -62,23 +130,28 @@ National_ID:{
   minlength:[14,"too short PhoneNumber"],
   maxlength:[14,"too long PhoneNumber"]
   },
- chronic_Diseases:{
-  type:[String],
-  required:true
-  },
- Health_problems:{
-  type:[String],
-  required:true
-  },
- Hereditary_diseases:{
-  type:[String],
-  required:true
-  },
- Surgical_operations:{
-  type:[String],
-  required:true
-  }
-  
+  chronic_Diseases:{
+    type:[chronic_Diseases_Schema],
+     default: []
+   },
+  Health_problems:{
+    type:[healthproblem_Schema],
+      default: []
+   },
+  Hereditary_diseases:{
+    type:[Hereditary_diseases_Schema],
+      default: []
+   },
+  Surgical_operations:{
+   type:[Surgical_operations_Schema],
+   default:[]
+
+   },
+   diagonas:{
+    type:[diagonas_Schema],
+    default:[]
+   }
+
 }
 );
 pationtSchema.pre('save',async function(next){

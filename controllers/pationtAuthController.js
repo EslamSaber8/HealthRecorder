@@ -51,7 +51,7 @@ exports.login=catchAsync( async(req,res,next)=>{
      const token=signToken(pationt._id);
      res.status(200).json({
         status:"success",
-        data:pationt,
+        data:{pationt},
         token
      })
 })
