@@ -66,6 +66,47 @@ exports.updatePationt = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.updateByDoctor = catchAsync(async (req, res, next) => {
+  const pationt = await Pationt.findById(req.params.id);
+
+  if (!pationt) {
+    return next(new AppError('No pationt found with that ID', 404));
+  }
+
+  // Push new elements from the request body to the corresponding array fields
+  if (req.body.chronic_Diseases) {
+    pationt.chronic_Diseases.push(...req.body.chronic_Diseases);
+  }
+  if (req.body.Health_problems) {
+    pationt.Health_problems.push(...req.body.Health_problems);
+  }
+  if (req.body.Hereditary_diseases) {
+    pationt.Hereditary_diseases.push(...req.body.Hereditary_diseases);
+  }
+  if (req.body.Surgical_operations) {
+    pationt.Surgical_operations.push(...req.body.Surgical_operations);
+  }
+  if (req.body.diagonas) {
+    pationt.diagonas.push(...req.body.diagonas);
+  }
+
+  // Save the updated document
+  await pationt.save();
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      pationt
+    }
+  });
+});
+
+
+
+
+
+
+
 exports.deletePationt = catchAsync(async (req, res, next) => {
   const pationt = await Pationt.findByIdAndDelete(req.params.id);
 

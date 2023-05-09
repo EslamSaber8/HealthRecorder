@@ -26,7 +26,7 @@ exports.signup=catchAsync(async(req,res,next)=>{
         status:"success",
         token,
         data:{
-            doctort:newDoctor
+            doctor:newDoctor
         }
     })
 })
@@ -46,7 +46,7 @@ exports.login=catchAsync( async(req,res,next)=>{
      const token=signToken(doctor._id);
      res.status(200).json({
         status:"success",
-        data:doctor,
+        data:{doctor},
         token
      })
 })
