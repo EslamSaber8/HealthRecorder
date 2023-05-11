@@ -67,6 +67,33 @@ exports.updateDoctor = catchAsync(async (req, res, next) => {
 });
 
 
+exports.pId = catchAsync(async (req, res, next) => {
+  const doctor = await Doctor.findById(req.params.id);
+
+  if (!doctor) {
+    return next(new AppError('No Doctor found with that ID', 404));
+  }
+
+  // Push new elements from the request body to the corresponding array fields
+  if (req.body.pId) {
+    doctor.pId.push(...req.body.pId);
+  }
+
+  // Save the updated document
+  await doctor.save();
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      doctor
+    }
+  });
+});
+
+
+
+
+
 exports.deleteDoctor = catchAsync(async (req, res, next) => {
   const doctor= await Doctor.findByIdAndDelete(req.params.id);
 

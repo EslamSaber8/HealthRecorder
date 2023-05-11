@@ -6,6 +6,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const pationtRouter = require('./routes/pationtRoutes');
 const doctorRouter = require('./routes/doctorRoutes');
 const updateRouter=require("./routes/updateRoutes ");
+const pId=require("./routes/pIdRoutes");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/pationts', pationtRouter);
 app.use('/api/v1/doctors', doctorRouter);
 app.use("/api/v1/update",updateRouter);
+app.use("/api/v1/pId",pId);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

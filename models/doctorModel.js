@@ -16,8 +16,7 @@ const doctorSchema = new mongoose.Schema(
     maxlength:[10,"too long name"],
  },
   age:{
-      type:Number,
-      required:true
+      type:Number
   },
     gender:{
       type:String,
@@ -55,6 +54,10 @@ const doctorSchema = new mongoose.Schema(
         type:String,
         required:true,
         unique:true
+    },
+    pId:{
+      type:[String],
+      default:[]
     }
   
 }

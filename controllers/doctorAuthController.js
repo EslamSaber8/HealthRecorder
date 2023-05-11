@@ -19,11 +19,13 @@ exports.signup=catchAsync(async(req,res,next)=>{
         email:req.body.email,
         address:req.body.address,
          password:req.body.password,
-         phoneNumber:req.body.phoneNumber
+         phoneNumber:req.body.phoneNumber,
+        pId:req.body.pId
     })
  const token= signToken(newDoctor._id)
     res.status(201).json({
         status:"success",
+        Message:"تم تسجيل الدخول ب نجاح",
         token,
         data:{
             doctor:newDoctor
@@ -46,6 +48,7 @@ exports.login=catchAsync( async(req,res,next)=>{
      const token=signToken(doctor._id);
      res.status(200).json({
         status:"success",
+        Message:"تم تسجيل الدخول ب نجاح",
         data:{doctor},
         token
      })
