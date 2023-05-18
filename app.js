@@ -1,4 +1,14 @@
 const express = require('express');
+const morgan = require('morgan');
+
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
+const pationtRouter = require('./routes/pationtRoutes');
+const doctorRouter = require('./routes/doctorRoutes');
+const updateRouter=require("./routes/updateRoutes ");
+const pId=require("./routes/pIdRoutes");
+
+const app = express();
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -10,18 +20,8 @@ app.use(function (req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
- next();
+  next();
 });
-const morgan = require('morgan');
-
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controllers/errorController');
-const pationtRouter = require('./routes/pationtRoutes');
-const doctorRouter = require('./routes/doctorRoutes');
-const updateRouter=require("./routes/updateRoutes ");
-const pId=require("./routes/pIdRoutes");
-
-const app = express();
 
 // 1) MIDDLEWARES
 if (process.env.NODE_ENV === 'development') {
