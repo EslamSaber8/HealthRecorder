@@ -15,6 +15,9 @@ const doctorSchema = new mongoose.Schema(
     minlength:[3,"too short name"],
     maxlength:[10,"too long name"],
  },
+  image:{
+    type:String
+  },
   age:{
       type:Number
   },
