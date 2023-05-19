@@ -12,12 +12,10 @@ const signToken=id=>{
 }
 
 exports.signup=catchAsync(async(req,res,next)=>{
-    console.log("SGHJKFGHJKJHGFDFGHJKJHGFDFGHJK");
     const result = await cloudinary.uploader.upload(req.file.path, {
         tags: "doctorImg",
         folder: "doctorImg/",
       });
-      console.log("SGHJK");
  console.log(result);
     const newDoctor=await Doctor.create({
         firstName:req.body.firstName,

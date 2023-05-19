@@ -84,7 +84,7 @@ const pationtSchema = new mongoose.Schema(
     maxlength:[10,"too long name"],
   },
   age:{
-      type:Number,
+      type:String,
       required:true
   },
   bloodType: {
