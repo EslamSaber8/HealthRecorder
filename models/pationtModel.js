@@ -84,7 +84,7 @@ const pationtSchema = new mongoose.Schema(
     maxlength:[10,"too long name"],
   },
   age:{
-      type:String,
+      type:Number,
       required:true
   },
   bloodType: {
@@ -127,8 +127,8 @@ National_ID:{
   type:String,
   required:true,
   unique:true,
-  minlength:[14,"too short PhoneNumber"],
-  maxlength:[14,"too long PhoneNumber"]
+  minlength:[14,"too short National_ID"],
+  maxlength:[14,"too long National_ID"]
   },
   chronic_Diseases:{
     type:[chronic_Diseases_Schema],
