@@ -22,9 +22,7 @@ exports.getAllPationts = catchAsync(async (req, res, next) => {
 });
 
 exports.getPationt = catchAsync(async (req, res, next) => {
-  const pationt = await Pationt.findById(req.params.id);
-  
-
+  const pationt = await Pationt.findOne({ National_ID:req.params.id});
   if (!pationt) {
     return next(new AppError('No pationt found with that ID', 404));
   }
@@ -67,7 +65,7 @@ exports.updatePationt = catchAsync(async (req, res, next) => {
 });
 
 exports.updateByDoctor = catchAsync(async (req, res, next) => {
-  const pationt = await Pationt.findById(req.params.id);
+  const pationt = await Pationt.findOne({ National_ID:req.params.id});
 
   if (!pationt) {
     return next(new AppError('No pationt found with that ID', 404));
