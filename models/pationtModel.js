@@ -42,7 +42,7 @@ const diagonas_Schema= new mongoose.Schema({
     type:[String],
     require:true
   }
-
+ 
 });
 
 
@@ -84,8 +84,7 @@ const pationtSchema = new mongoose.Schema(
     maxlength:[10,"too long lastName"],
   },
   image:{
-    type:String,
-    required:[true,"fen al sora"]
+    type:String
   },
   age:{
       type:Number,
