@@ -22,7 +22,7 @@ exports.getAllPationts = catchAsync(async (req, res, next) => {
 });
 
 exports.getPationt = catchAsync(async (req, res, next) => {
-  const pationt = await Pationt.findOne(req.params.National_ID);
+  const pationt = await Pationt.findById(req.params.id);
   
 
   if (!pationt) {
