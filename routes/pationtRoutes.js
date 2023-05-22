@@ -1,9 +1,9 @@
 const express = require('express');
-
+const upload=require("../utils/multer");
 const pationtController = require('../controllers/pationtController');
 const pationtAuthController=require("../controllers/pationtAuthController");
 const router = express.Router();
-router.post("/signup",pationtAuthController.signup)
+router.post("/signup",upload.single("image"),pationtAuthController.signup)
 router.post("/login",pationtAuthController.login)
 router
   .route('/')

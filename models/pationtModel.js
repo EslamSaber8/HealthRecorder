@@ -73,15 +73,19 @@ const pationtSchema = new mongoose.Schema(
   {
     fristName:{
       type:String,
-      required:[true,"name required"],
-      minlength:[3,"too short name"],
-      maxlength:[10,"too long name"],
+      required:[true,"fristName required"],
+      minlength:[3,"too short fristName"],
+      maxlength:[10,"too long fristName"],
   },
   lastName:{
     type:String,
-    required:[true,"name required"],
-    minlength:[3,"too short name"],
-    maxlength:[10,"too long name"],
+    required:[true,"lastName required"],
+    minlength:[3,"too short lastName"],
+    maxlength:[10,"too long lastName"],
+  },
+  image:{
+    type:String,
+    required:[true,"fen al sora"]
   },
   age:{
       type:Number,
