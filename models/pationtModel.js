@@ -84,6 +84,22 @@ const pationtSchema = new mongoose.Schema(
     minlength:[3,"too short lastName"],
     maxlength:[10,"too long lastName"],
   },
+  relativeRelation:{
+   type:String,
+   minlength:[3," too short relativeRelation"],
+   maxlength:[20,"too long relativeRelation"],
+  },
+  relativeName:{
+    type:String,
+    minlength:[3," too short relativeName"],
+    maxlength:[15,"too long relativeName"],
+  },
+  relativeNumber:{
+    type:Number,
+    minlength:[11," too short relativeNumber"],
+    maxlength:[11,"too long relativeNumber"],
+  },
+
    image:{
      type:String,
      default:"https://res.cloudinary.com/dxs0ugb8z/image/upload/v1684962851/pationtImg/woep0gm8je0yr9smzxny.png"
@@ -101,7 +117,7 @@ const pationtSchema = new mongoose.Schema(
       required: [true, 'bloodType required'],
       enum: {
         values: ['A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-'],
-        message: "must choose a valid bloodtype('A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-')"
+        message: "must choose a valid blood type('A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-')"
       }
     },
     gender:{
