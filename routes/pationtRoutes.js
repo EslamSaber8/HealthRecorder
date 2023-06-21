@@ -13,7 +13,7 @@ router
 router
   .route('/:id')
   .get(pationtController.getPationt)
-  .patch(pationtController.updatePationt)
+  .patch(upload.single("image"),pationtController.updatePationt)
   .delete(pationtController.deletePationt);
 
 module.exports = router;

@@ -1,8 +1,7 @@
 const {promisify}=require("util");
 const jwt=require("jsonwebtoken");
 const Pationt=require("./../models/pationtModel");
-const cloudinary=require("../utils/cloudinary");
-const multer=require("../utils/multer");
+//const cloudinary=require("../utils/cloudinary");
 const catchAsync=require("./../utils/catchAsync");
 const appError=require("./../utils/appError")
 const signToken=id=>{
@@ -11,11 +10,11 @@ const signToken=id=>{
      } )
 }
 exports.signup=catchAsync(async(req,res,next)=>{
-    const result = await cloudinary.uploader.upload(req.file.path, {
-        tags: "pationtImg",
-        folder: "pationtImg/",
-      });
- console.log(result);
+  //const result = await cloudinary.uploader.upload(req.file.path, {
+        // tags: "pationtImg",
+      //   folder: "pationtImg/",
+    //   });
+//  console.log(result);
     const newPationt=await Pationt.create({
         fristName:req.body.fristName,
         lastName:req.body.lastName,
@@ -30,7 +29,8 @@ exports.signup=catchAsync(async(req,res,next)=>{
         Health_problems:req.body.Health_problems,
         Hereditary_diseases:req.body.Hereditary_diseases,
         Surgical_operations:req.body.Surgical_operations,
-        image:result.secure_url
+         //image:result.secure_url,
+        // x_ray:req.body.x_ray
 
          
     })

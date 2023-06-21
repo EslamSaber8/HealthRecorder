@@ -1,5 +1,5 @@
 const express = require('express');
-const upload=require("../utils/multer");
+ const upload=require("../utils/multer");
 
 const doctorController = require('../controllers/doctorController');
 const doctorAuthController=require("../controllers/doctorAuthController");

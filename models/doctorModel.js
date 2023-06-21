@@ -16,8 +16,9 @@ const doctorSchema = new mongoose.Schema(
     maxlength:[10,"too long name"],
  },
   image:{
-    type:String
-  },
+     type:String,
+     default:"https://res.cloudinary.com/dxs0ugb8z/image/upload/v1684962851/pationtImg/woep0gm8je0yr9smzxny.png"
+   },
   age:{
       type:Number
   },

@@ -2,6 +2,7 @@ const Doctor = require('../models/doctorModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const cloudinary=require("../utils/cloudinary");
 
 exports.getAllDoctor = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Doctor.find(), req.query)
@@ -66,6 +67,32 @@ exports.updateDoctor = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.update_picture = catchAsync(async (req, res, next) => {
+  const result = await cloudinary.uploader.upload(req.file.path, {
+  tags: "doctorImg",
+  folder: "doctorImg/",
+});
+
+  const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.file.path, {
+  new: true,
+  runValidators: true,
+  
+});
+
+if (!doctor) {
+  return next(new AppError('No pationt found with that ID', 404));
+}
+doctor.image=result.secure_url
+//console.log(`kfkkf`,result.secure_url);
+await doctor.save();
+
+res.status(200).json({
+  status: 'success',
+  data: {
+    doctor
+  }
+});
+});
 
 exports.pId = catchAsync(async (req, res, next) => {
   const doctor = await Doctor.findById(req.params.id);
@@ -86,8 +113,7 @@ exports.pId = catchAsync(async (req, res, next) => {
     status: 'success',
     data: {
       doctor
-    }
-  });
+    }});
 });
 
 
