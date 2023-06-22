@@ -5,6 +5,7 @@ const pationtAuthController=require("../controllers/pationtAuthController");
 const router = express.Router();
 router.post("/signup",upload.single("image"),pationtAuthController.signup)
 router.post("/login",pationtAuthController.login)
+router.post("/forget_pass",pationtAuthController.forget_pass)
 router
   .route('/')
   .get(pationtController.getAllPationts)
@@ -13,7 +14,7 @@ router
 router
   .route('/:id')
   .get(pationtController.getPationt)
-  .patch(pationtController.updatePationt)
+  .patch(upload.single("image"),pationtController.updatePationt)
   .delete(pationtController.deletePationt);
 
 module.exports = router;

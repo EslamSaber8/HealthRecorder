@@ -26,8 +26,9 @@ const Surgical_operations_Schema= new mongoose.Schema({
 const diagonas_Schema= new mongoose.Schema({
   DoctorName: {
     type: String,
-    required: true
+    required: true,
   },
+  
   date: {
     type: String,
     minlength:[10," short data please set data as EX 01/02/2020"],
@@ -83,9 +84,14 @@ const pationtSchema = new mongoose.Schema(
     minlength:[3,"too short lastName"],
     maxlength:[10,"too long lastName"],
   },
-  image:{
-    type:String
-  },
+   image:{
+     type:String,
+     default:"https://res.cloudinary.com/dxs0ugb8z/image/upload/v1687357323/doctorImg/z7ae1gaobpgnwfauvski.png"
+   },
+   x_ray:{
+     type:[String],
+     default:[]
+   },
   age:{
       type:Number,
       required:true
@@ -94,7 +100,7 @@ const pationtSchema = new mongoose.Schema(
       type: String,
       required: [true, 'bloodType required'],
       enum: {
-        values: ['A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-'],
+        values: ['A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-',"don't know"],
         message: "must choose a valid bloodtype('A+', 'A-', 'B+','B-','AB+', 'AB-', 'O+','O-')"
       }
     },

@@ -1,8 +1,7 @@
 const {promisify}=require("util");
 const jwt=require("jsonwebtoken");
 const Pationt=require("./../models/pationtModel");
-const cloudinary=require("../utils/cloudinary");
-const multer=require("../utils/multer");
+//const cloudinary=require("../utils/cloudinary");
 const catchAsync=require("./../utils/catchAsync");
 const appError=require("./../utils/appError")
 const signToken=id=>{
@@ -11,11 +10,11 @@ const signToken=id=>{
      } )
 }
 exports.signup=catchAsync(async(req,res,next)=>{
-    const result = await cloudinary.uploader.upload(req.file.path, {
-        tags: "pationtImg",
-        folder: "pationtImg/",
-      });
- console.log(result);
+  //const result = await cloudinary.uploader.upload(req.file.path, {
+        // tags: "pationtImg",
+      //   folder: "pationtImg/",
+    //   });
+//  console.log(result);
     const newPationt=await Pationt.create({
         fristName:req.body.fristName,
         lastName:req.body.lastName,
@@ -30,7 +29,8 @@ exports.signup=catchAsync(async(req,res,next)=>{
         Health_problems:req.body.Health_problems,
         Hereditary_diseases:req.body.Hereditary_diseases,
         Surgical_operations:req.body.Surgical_operations,
-        image:result.secure_url
+         //image:result.secure_url,
+        // x_ray:req.body.x_ray
 
          
     })
@@ -63,6 +63,27 @@ exports.login=catchAsync( async(req,res,next)=>{
         token
      })
 })
+exports.forget_pass=catchAsync( async(req,res,next)=>{
+    const {email,National_ID}=req.body;
+    //check if email and phone number exist
+    console.log(email,National_ID)
+    if(!email||!National_ID){
+    return next(new appError("please provid email and National_ID",400))
+    }
+    //check if user exists
+    const pationt=await  Doctor.findOne({email, National_ID})
+    if(!pationt){
+    return next(new appError('incorect email or National_ID',401))
+    }
+    //if all ok send token
+    const token=signToken(pationt._id);
+    res.status(200).json({
+    status:"success",
+    Message:"تم تسجيل الدخول ب نجاح",
+    data:{pationt},
+    token
+    })
+    })
 // exports.protect=catchAsync(async(req,res,next)=>{
 //     // 1) get token and checkof its there
 //     let token;
