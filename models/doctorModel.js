@@ -17,7 +17,11 @@ const doctorSchema = new mongoose.Schema(
  },
   image:{
      type:String,
+<<<<<<< HEAD
      default:"https://res.cloudinary.com/dxs0ugb8z/image/upload/v1687357323/doctorImg/z7ae1gaobpgnwfauvski.png"
+=======
+     default:"https://res.cloudinary.com/dxs0ugb8z/image/upload/v1684962851/pationtImg/woep0gm8je0yr9smzxny.png"
+>>>>>>> 6f6a1d220cddbb10ab566ea0a83596d5b3e0632d
    },
   age:{
       type:Number

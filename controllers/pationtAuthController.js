@@ -18,6 +18,9 @@ exports.signup=catchAsync(async(req,res,next)=>{
     const newPationt=await Pationt.create({
         fristName:req.body.fristName,
         lastName:req.body.lastName,
+        relativeRelation:req.body.relativeRelation,
+        relativeName :req.body.relativeName,
+        relativeNumber:req.body.relativeNumber,
         age:req.body.age,
         bloodType:req.body.bloodType,
         gender:req.body.gender,
@@ -29,6 +32,10 @@ exports.signup=catchAsync(async(req,res,next)=>{
         Health_problems:req.body.Health_problems,
         Hereditary_diseases:req.body.Hereditary_diseases,
         Surgical_operations:req.body.Surgical_operations,
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 6f6a1d220cddbb10ab566ea0a83596d5b3e0632d
          //image:result.secure_url,
         // x_ray:req.body.x_ray
 

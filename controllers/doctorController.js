@@ -69,6 +69,7 @@ exports.updateDoctor = catchAsync(async (req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
 exports.updateDo_password = catchAsync(async (req, res, next) => {
 // Get the current doctor from the database
 const doctor = await Doctor.findById(req.params.id);
@@ -113,6 +114,8 @@ updatedDoctor
 });
 });
 
+=======
+>>>>>>> 6f6a1d220cddbb10ab566ea0a83596d5b3e0632d
 exports.update_picture = catchAsync(async (req, res, next) => {
   const result = await cloudinary.uploader.upload(req.file.path, {
   tags: "doctorImg",

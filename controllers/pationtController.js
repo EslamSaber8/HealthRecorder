@@ -50,6 +50,7 @@ exports.createPationt = catchAsync(async (req, res, next) => {
   });
 });
 exports.updatePationt = catchAsync(async (req, res, next) => {
+<<<<<<< HEAD
   const pationt = await Pationt.findByIdAndUpdate(req.params.id, req.body, {
   new: true,
   runValidators: true
@@ -112,6 +113,50 @@ updatedPationt
 });
 });
 
+
+exports.updateimage = catchAsync(async (req, res, next) => {
+  const result = await cloudinary.uploader.upload(req.file.path, {
+  tags: "pationtImg",
+  folder: "pationtImg/",
+});
+
+  const pationt = await Pationt.findByIdAndUpdate(req.params.id, req.file.path, {
+  new: true,
+  runValidators: true,
+  
+});
+
+if (!pationt) {
+  return next(new AppError('No pationt found with that ID', 404));
+}
+pationt.image = result.secure_url;
+await pationt.save();
+//console.log(`kfkkf`,result.secure_url);
+res.status(200).json({
+  status: 'success',
+  data: {
+    pationt
+  }
+});
+=======
+    const pationt = await Pationt.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  });
+  
+  if (!pationt) {
+    return next(new AppError('No pationt found with that ID', 404));
+  }
+  await pationt.save();
+ // console.log("dommmmmmmmmmmmm");
+  res.status(200).json({
+    status: 'success',
+    data: {
+      pationt
+    }
+  });
+>>>>>>> 6f6a1d220cddbb10ab566ea0a83596d5b3e0632d
+});
 
 exports.updateimage = catchAsync(async (req, res, next) => {
   const result = await cloudinary.uploader.upload(req.file.path, {

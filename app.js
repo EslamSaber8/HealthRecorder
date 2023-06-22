@@ -5,8 +5,11 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const pationtRouter = require('./routes/pationtRoutes');
 const doctorRouter = require('./routes/doctorRoutes');
+<<<<<<< HEAD
 const updateDo_password = require("./routes/updateDo_pasword");
 const updatePa_password = require("./routes/updatePa_password");
+=======
+>>>>>>> 6f6a1d220cddbb10ab566ea0a83596d5b3e0632d
 const updateRouter =require("./routes/updateRoutes ");
 const updateX_ray =require("./routes/updatex_ray");
 const updateimage =require("./routes/updateimage");
@@ -43,8 +46,11 @@ app.use((req, res, next) => {
 app.use('/api/v1/pationts', pationtRouter);
 app.use('/api/v1/doctors', doctorRouter);
 app.use("/api/v1/update",updateRouter);
+<<<<<<< HEAD
 app.use("/api/v1/updateDo_pass",updateDo_password);
 app.use("/api/v1/updatePa_pass",updatePa_password);
+=======
+>>>>>>> 6f6a1d220cddbb10ab566ea0a83596d5b3e0632d
 app.use("/api/v1/updateX_ray",updateX_ray);
 app.use("/api/v1/update_image",updateimage);
 app.use("/api/v1/update_doc_picture",update_picture);
