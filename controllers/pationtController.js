@@ -86,12 +86,6 @@ return next(new AppError('Invalid password', 400));
 const hashedPassword = await bcrypt.hash(req.body.password, 12);
 
 // Compare the new password with the old one
-const isMatch = await bcrypt.compare(req.body.password, pationt.password);
-
-// If the passwords are the same, do not update
-if (isMatch) {
-return next(new AppError('New password cannot be the same as the old one', 400));
-}
 
 // Update the patient with the new password and other fields
 const updatedPationt = await Pationt.findByIdAndUpdate(
