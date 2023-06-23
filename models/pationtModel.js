@@ -31,8 +31,6 @@ const diagonas_Schema= new mongoose.Schema({
   
   date: {
     type: String,
-    minlength:[10," short data please set data as EX 01/02/2020"],
-    maxlength:[10," long data too long PhoneNumber"],
     required: true
   },
   Diagnose_condition:{
