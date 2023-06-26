@@ -71,7 +71,7 @@ exports.forget_pass=catchAsync( async(req,res,next)=>{
     return next(new appError("please provid email and National_ID",400))
     }
     //check if user exists
-    const pationt=await  Doctor.findOne({email, National_ID})
+    const pationt=await  Pationt.findOne({email, National_ID});
     if(!pationt){
     return next(new appError('incorect email or National_ID',401))
     }

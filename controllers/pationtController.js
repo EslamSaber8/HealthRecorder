@@ -87,6 +87,7 @@ const hashedPassword = await bcrypt.hash(req.body.password, 12);
 
 // Compare the new password with the old one
 
+
 // Update the patient with the new password and other fields
 const updatedPationt = await Pationt.findByIdAndUpdate(
 req.params.id,
@@ -105,7 +106,6 @@ updatedPationt
 }
 });
 });
-
 
 exports.updateimage = catchAsync(async (req, res, next) => {
   const result = await cloudinary.uploader.upload(req.file.path, {
@@ -158,7 +158,9 @@ exports.updateByDoctor = catchAsync(async (req, res, next) => {
   if (req.body.diagonas) {
     pationt.diagonas.push(...req.body.diagonas);
   }
-   
+    if (req.body.orgnis_report) {
+    pationt.orgnis_report.push(...req.body.orgnis_report);
+  }
 
   // Save the updated document
   await pationt.save();

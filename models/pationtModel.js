@@ -11,6 +11,18 @@ const healthproblem_Schema = new mongoose.Schema({
     required: true
   }
 });
+const orgnis_report_Schema= new mongoose.Schema({
+  descrption: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    minlength:[10," short data please set data as EX 01/02/2020"],
+    maxlength:[10," long data too long PhoneNumber"],
+    required: true
+  }
+});
 const Surgical_operations_Schema= new mongoose.Schema({
   name: {
     type: String,
@@ -31,6 +43,8 @@ const diagonas_Schema= new mongoose.Schema({
   
   date: {
     type: String,
+    minlength:[10," short data please set data as EX 01/02/2020"],
+    maxlength:[10," long data too long PhoneNumber"],
     required: true
   },
   Diagnose_condition:{
@@ -157,8 +171,12 @@ National_ID:{
    diagonas:{
     type:[diagonas_Schema],
     default:[]
+   },
+   orgnis_report:{
+    type:[orgnis_report_Schema],
+    default:[]
    }
-
+ 
 }
 );
 pationtSchema.pre('save',async function(next){
